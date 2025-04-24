@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -19,8 +21,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _addressController = TextEditingController();
 
   DateTime _selectedDate = DateTime.now();
-  String _selectedGender = 'Male';
-  List<String> _genderOptions = ['Male', 'Female'];
+  String _selectedGender = 'Laki-Laki';
+  List<String> _genderOptions = ['Laki-Laki', 'Perempuan'];
 
   @override
   void dispose() {
@@ -99,7 +101,6 @@ class _RegisterPageState extends State<RegisterPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Icon centered at the top
             const SizedBox(height: 30),
             Center(
               child: Container(
@@ -116,7 +117,6 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 30),
-            // Form section
             Form(
               key: _formKey,
               child: Column(
@@ -245,6 +245,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       prefixIcon: Icon(Icons.phone),
                     ),
                     keyboardType: TextInputType.phone,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Masukkan nomor teleponmu';
