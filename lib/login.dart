@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your username';
+                        return 'Tolong masukkan username anda';
                       }
                       return null;
                     },

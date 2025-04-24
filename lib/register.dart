@@ -19,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passwordController = TextEditingController();
   final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
+  bool _obscurePassword = true;
 
   DateTime _selectedDate = DateTime.now();
   String _selectedGender = 'Laki-Laki';
@@ -189,20 +190,32 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  TextFormField(
+                 TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Password',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                      ),
                     ),
-                    obscureText: true,
+                    obscureText: _obscurePassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Password tidak boleh kosong';
+                        return 'Tolong masukkan password anda';
                       }
                       if (value.length < 6) {
-                        return 'Password minimal 6 karakter';
+                        return 'Password minimal harus 6 karakter';
                       }
                       return null;
                     },
