@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../pages/notes_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -10,8 +11,8 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Center(child: Text('Beranda', style: TextStyle(fontSize: 30))),
+  static final List<Widget> _widgetOptions = <Widget>[
+    NotesPage(), // <-- Ganti 'Beranda' dengan NotesPage
     Center(child: Text('Menu Search', style: TextStyle(fontSize: 30))),
     Center(child: Text('Menu Profil', style: TextStyle(fontSize: 30))),
     Center(child: Text('Menu Notifikasi', style: TextStyle(fontSize: 30))),
